@@ -20,3 +20,9 @@ users = [
 for name, age, birth in users:  # unpacked
     print(name)
 
+
+sorted(ages)
+list(reversed(ages))
+sorted(ages, reverse=True)
+list(reversed(sorted(ages)))
+ages.sort()
