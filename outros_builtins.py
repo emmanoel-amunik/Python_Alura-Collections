@@ -26,3 +26,6 @@ list(reversed(ages))
 sorted(ages, reverse=True)
 list(reversed(sorted(ages)))
 ages.sort()
+
+names = ["Daniela", "Guilherme", "Paulo"]
+sorted(names)

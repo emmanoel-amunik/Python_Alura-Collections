@@ -1,3 +1,6 @@
+from operator import attrgetter
+
+
 class SalaryAccount:
     def __init__(self, code):
         self._code = code
@@ -9,6 +12,9 @@ class SalaryAccount:
 
         return self._code == other.get_code()
         # and self._balance == other._balance
+
+    def __lt__(self, other):
+        return not self._balance > other._balance
 
     def __str__(self):
         return f"<<< Code {self._code} Balance {self._balance}<<<"
@@ -36,3 +42,30 @@ class MultipleSalaryAccount(SalaryAccount):
 
 
 print(isinstance(MultipleSalaryAccount(34), SalaryAccount))  # True
+
+
+account_of_guilherme = SalaryAccount(17)
+account_of_guilherme.deposit(500)
+
+account_of_daniela = SalaryAccount(3)
+account_of_daniela.deposit(1000)
+
+account_of_paulo = SalaryAccount(33)
+account_of_paulo.deposit(510)
+
+accounts = [account_of_guilherme, account_of_daniela, account_of_paulo]
+
+for acc in accounts:
+    print(acc)
+
+for conta in sorted(accounts, key=attrgetter("_balance")):
+    print(conta)
+
+
+print(account_of_guilherme < account_of_daniela)  # True
+
+for acc in sorted(accounts):
+    print(acc)
+
+for acc in sorted(accounts, reverse=True):
+    print(acc)
